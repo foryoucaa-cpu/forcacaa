@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD My Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e0b0ff; /* Mauve/Ungu Muda Estetik */
+            --accent-color: #ffffff;
+            --bg-overlay: rgba(0, 0, 0, 0.6); /* Overlay gelap agar teks jelas */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ============================
+           STYLE HALAMAN DEPAN (COVER)
+           ============================ */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* FOTO COVER: Ganti link di bawah ini dengan foto terbaik kalian */
+            background-image: url('1.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 100;
+            transition: opacity 1.5s ease-in-out, visibility 1.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Efek Blur dan Gelap pada Background */
+        #overlay::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-overlay);
+            backdrop-filter: blur(3px); /* Efek blur halus */
+            z-index: 1;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 2; /* Di atas overlay gelap */
+            text-align: center;
+            color: var(--accent-color);
+            padding: 20px;
+        }
+
+        .pre-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: 300;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .couple-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin: 0 0 40px 0;
+            text-shadow: 2px 2px 10px rgba(224, 176, 255, 0.5);
+        }
+
+        .heart-icon {
+            font-size: 2rem;
+            color: #ff4d4d;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .btn-open {
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-open:hover {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animasi Denyut Jantung */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ============================
+           STYLE KONTEN UTAMA (SETELAH KLIK)
+           ============================ */
+        #main-content {
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.9);
+            transition: all 1.5s ease;
+            max-width: 80%;
+            z-index: 1;
+        }
+
+        /* State saat konten utama muncul */
+        #main-content.show {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .photo-frame {
+            width: 280px;
+            height: 350px;
+            background: white;
+            padding: 15px 15px 45px 15px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.7);
+            margin: 0 auto 40px;
+            transform: rotate(-2deg);
+            border-radius: 2px;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 300;
+            color: rgba(255,255,255,0.9);
+        }
+
+        #bg-music { display: none; }
+
+    </style>
+</head>
+<body>
+
+    <div id="overlay">
+        <div class="cover-content">
+            <div class="pre-title">Spesial Untuk</div>
+            <div class="couple-name">Sayangku</div>
+            <div class="heart-icon">❤️</div>
+            <button class="btn-open" onclick="startCard()">Buka</button>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="main-content">
+        <div class="photo-frame">
+            <img src="2.jpg" alt="Foto Pacar">
+        </div>
+        <h1>Selamat Ulang Tahun</h1>
+        <p>"Di hari yang istimewa ini, aku hanya ingin kamu tahu betapa berartinya dirimu bagiku. Terima kasih telah membawa cahaya dan kebahagiaan setiap harinya. Semoga semua mimpimu menjadi kenyataan."</p>
+        <p style="font-size: 0.9rem; margin-top: 30px; opacity: 0.6;">With Love, [ICAL]</p>
+    </div>
+
+    <script>
+        function startCard() {
+            // Putar Musik terlebih dahulu (agar sinkron dengan transisi)
+            const music = document.getElementById('bg-music');
+            music.play().catch(error => {
+                console.log("Autoplay musik diblokir browser, butuh interaksi user.");
+            });
+
+            // Hilangkan overlay dengan halus
+            const overlay = document.getElementById('overlay');
+            overlay.style.opacity = '0';
+            
+            // Tampilkan konten utama dengan animasi
+            const content = document.getElementById('main-content');
+            
+            // Beri sedikit delay agar transisi mulus
+            setTimeout(() => {
+                overlay.style.visibility = 'hidden';
+                content.classList.add('show');
+            }, 500); // Setengah dari waktu transisi CSS
+        }
+    </script>
+</body>
+</html>
